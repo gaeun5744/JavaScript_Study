@@ -1,0 +1,16 @@
+// 비주얼스튜디오코드가 보는 로컬 셋팅을 모아두는 곳
+// 이 폴더에만 적용되는 셋팅들을 모아둔 것
+
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  }
+}
+
+
+
+
+
