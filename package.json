@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "echo \"Hellow World\""
+    "debug": "node src/class.js"
   },
   "devDependencies": {
     "@types/node": "^18.7.3",
