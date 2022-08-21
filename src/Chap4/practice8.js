@@ -4,27 +4,27 @@
 // 즉, 신규 언어 스펙(ES6+)에서 구형 언어 스펙(ES5 등)으로 트랜스파일 할 때 주로 사용됩니다.
 // 자바스크립트를 대상으로 하는 트랜스파일러는 Babel, tsc(TypeScript Compiler), ESBuild 등이 있습니다.
 
-const objs =[
+const objs = [
   {
-    foo:{
-      bar:{
-        baz:1,
-      }
-    }
+    foo: {
+      bar: {
+        baz: 1,
+      },
+    },
   },
   {},
   {
-    foo:{},
-  }
+    foo: {},
+  },
 ]
 
 console.log(
-  objs.map((obj)=>{
-    const {foo}=obj
+  objs.map((obj) => {
+    const { foo } = obj
 
-    if(foo){
-      const {bar} = foo
-      if(bar){
+    if (foo) {
+      const { bar } = foo
+      if (bar) {
         return bar.baz
       }
     }
@@ -32,5 +32,4 @@ console.log(
   })
 )
 
-console.log(objs.map(obj)=> obj.foo?.bar?.baz)
-
+console.log(objs.map((obj) => obj.foo?.bar?.baz))
