@@ -1,0 +1,14 @@
+{
+  "posts": [
+    {
+      "id": "my_first_post",
+      "title": "My_first_post",
+      "content": "안녕하세요"
+    },
+    {
+      "id": "my_second_post",
+      "title": "My_second_post",
+      "content": "안녕하세요"
+    }
+  ]
+}

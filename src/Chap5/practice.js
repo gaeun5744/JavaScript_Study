@@ -23,15 +23,37 @@ const server = http.createServer((req, res) => {
         _route.url.test(req.url)
     )
 
-    if (!route) {
+    if (!route || !req.url) {
       res.statusCode = 404
       res.end('Not found.')
       return
     }
 
-    const result = await route.callback()
+    const regexResult = route.url.exec(req.url)
+
+    if (!regexResult) {
+      res.statusCode = 404
+      res.end('not found')
+      return
+    }
+
+    /** @type {Object.<string, *> | undefined} */
+    const reqBody =
+      (req.headers['content-type'] === 'application/json' &&
+        (await new Promise((resolve, reject) => {
+          req.setEncoding('utf-8')
+          req.on('data', (data) => {
+            try {
+              resolve(data)
+            } catch {
+              reject(new Error('Ill-formed json'))
+            }
+          })
+        }))) ||
+      undefined
+
+    const result = await route.callback(regexResult, reqBody)
     res.statusCode = result.statusCode
-    res.end(result.body)
 
     if (typeof result.body === 'string') {
       res.end(result.body)
