@@ -31,11 +31,28 @@ const { title } = require('process')
  */
 
 const fs = require('fs')
+const DB_JSON_FILENAME = 'database.json'
 
 /** @returns {Promise<Post[]>} */
 async function getPosts() {
-  const json = await fs.promises.readFile('database.json', 'utf-8')
+  const json = await fs.promises.readFile(DB_JSON_FILENAME, 'utf-8')
   return JSON.parse(json).posts
+}
+
+/**
+ * @param {Post[]} posts
+ */
+
+async function savePosts(posts) {
+  const content = {
+    posts,
+  }
+
+  return await fs.promises.writeFile(
+    DB_JSON_FILENAME,
+    JSON.stringify(content),
+    'utf-8'
+  )
 }
 
 /** @type {Route[]} */
@@ -96,7 +113,9 @@ const routes = [
         content: body.content,
       }
 
+      const posts = await getPosts()
       posts.push(newPost)
+      savePosts(posts)
 
       return {
         statusCode: 200,
